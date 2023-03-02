@@ -28,13 +28,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     id = models.AutoField(primary_key=True, unique=True)
     username = models.CharField(max_length=50, unique=True)
     email = models.EmailField(max_length=100, unique=True)
-    is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
-    USERNAME_FIELD = 'email'  # Идентификатор для обращения
-    REQUIRED_FIELDS = ['username']  # Список имён полей для Superuser
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
 
-    objects = MyUserManager()  # Добавляем методы класса MyUserManager
+    objects = MyUserManager()
 
     def __str__(self):
         return f'{self.email},{self.id},{self.username}'
